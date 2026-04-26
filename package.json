@@ -1,0 +1,26 @@
+{
+  "name": "ai-playwrightautomation",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/QAZebass/AI-PlaywrightAutomation.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/QAZebass/AI-PlaywrightAutomation/issues"
+  },
+  "homepage": "https://github.com/QAZebass/AI-PlaywrightAutomation#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.59.1",
+    "@types/node": "^25.6.0"
+  }
+}
