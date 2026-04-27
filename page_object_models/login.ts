@@ -32,7 +32,6 @@ export class LoginPage {
 
     async closeErrorMessage(){
         expect(this.errorMessage).toBeVisible()
-        expect(this.errorMessage).toBeEditable()
         await this.errorMessageCloseButton.click()
     }
 

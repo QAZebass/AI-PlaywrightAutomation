@@ -1,33 +1,28 @@
-import { test, expect } from '@playwright/test'
 import { LoginPage } from '../page_object_models/login'
+import { LoginValidations } from '../page_object_models/loginValidations'
+import { LoginValidations as ProductListPageValidations } from '../page_object_models/productListPageValidations'
+import { test } from '@playwright/test'
 
 test.describe('Login E2E Tests', () => {
-    let loginPage: LoginPage
-
     test.beforeEach(async ({ page }) => {
-        await page.goto('https://www.saucedemo.com/')
-        loginPage = new LoginPage(page)
+        await page.goto('https://www.saucedemo.com')
     })
 
-    test('Should login successfully with valid credentials', async ({ page }) => {
-        const validUsername = 'standard_user'
-        const validPassword = 'secret_sauce'
-
-        await loginPage.logIn(validUsername, validPassword)
+    test('Successful login', async ({ page }) => {
+        const loginPage = new LoginPage(page)
+        await loginPage.logIn('standard_user', 'secret_sauce')
         await loginPage.clickOnLogInButton()
 
-        expect(page.url()).toContain('/inventory')
-        await expect(page.getByText('Products')).toBeVisible()
+        const productListValidations = new ProductListPageValidations(page)
+        await productListValidations.validateSuccessfulLogin()
     })
 
-    test('Should fail to login with invalid credentials', async ({ page }) => {
-        const invalidUsername = 'invalid_user'
-        const invalidPassword = 'wrong_password'
-
-        await loginPage.logIn(invalidUsername, invalidPassword)
+    test('Failed login', async ({ page }) => {
+        const loginPage = new LoginPage(page)
+        await loginPage.logIn('invalid_user', 'invalid_pass')
         await loginPage.clickOnLogInButton()
-
-        await expect(page.getByTestId('error')).toBeVisible()
-        await expect(page.getByTestId('error')).toContainText('Username and password do not match any user in this service')
+        const loginValidations = new LoginValidations(page)
+        await loginValidations.validateErrorMessage()
+        await loginPage.closeErrorMessage()
     })
 })

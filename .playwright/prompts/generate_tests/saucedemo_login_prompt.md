@@ -6,16 +6,13 @@ Contexto:
 
 Tarea:
 Genera un test E2E para validar que un usuario puede loguearse correctamente en Saucedemo.
-Genera un est E2E para validar que un usuario NO puede loguearse correctamente en Saucedemo.
+Genera un est E2E para validar que un usuario NO puede loguearse correctamente en Saucedemo. En caso de algun letrero de error, cerrarlo.
 
 Requisitos:
 - Usar Playwright test
 - Usar la clase LoginPage
 - No interactuar directamente con page (usar POM)
-- Incluir validaciones fuertes:
-  - URL contiene /inventory
-  - texto visible "Products"
-  - Valida que texto de error en caso de login fallido
+- Incluir validaciones que se encuentran en los archivos terminados en "Validations" para los tests.
 
 Output:
 - Código completo listo para ejecutar
